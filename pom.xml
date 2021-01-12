@@ -79,12 +79,14 @@
         <dependency>
             <groupId>jna</groupId>
             <artifactId>jna</artifactId>
+            <version>3.0.9</version>
             <scope>system</scope>
             <systemPath>${project.basedir}/lib/jna.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>jna1</groupId>
             <artifactId>jna1</artifactId>
+            <version>3.0.9</version>
             <scope>system</scope>
             <systemPath>${project.basedir}/lib/examples.jar</systemPath>
         </dependency>
@@ -100,12 +102,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <excludes>
-                        <exclude>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                        </exclude>
-                    </excludes>
+                    <includeSystemScope>true</includeSystemScope>
                 </configuration>
             </plugin>
         </plugins>

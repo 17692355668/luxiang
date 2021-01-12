@@ -29,6 +29,7 @@ public class LuxiangController {
     {
         int x=luxiangService.insert(ip,filename,file);
     }
+
     //初始化
     //参数：ip
     @RequestMapping("chushihua/{ip}")
@@ -70,11 +71,6 @@ public class LuxiangController {
         Test1 test1 = vedioMap.get(ip);
         test1.zhuxiao();
     }
-
-
-
-
-
 
 
 

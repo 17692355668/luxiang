@@ -4,6 +4,9 @@ import com.javakc.luxiang.controller.LuxiangController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.io.File;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Scanner;
 
 public class Test1 {
@@ -89,8 +92,20 @@ public class Test1 {
         lRealHandle = hCNetSDK.NET_DVR_RealPlay(lUserID, lpClintInfo);
         //捕获数据并存放到指定的文件中
         //用当前时间戳来命名视频名字
+        Date dt=new Date();
+
+        String year=String.format("%tY", dt);
+
+        String mon=String .format("%tm", dt);
+
+        String day=String .format("%td", dt);
+        String file1="E:\\"+year+"\\"+mon+"\\"+day;
+        File file2 = new File(file1);
+        if (!file2.exists()) {
+            file2.mkdirs();
+        }
         String time =java.util.UUID.randomUUID().toString();
-        file = "E:\\qq\\" + time + ".mp4";
+        file = file1+"\\" + time + ".mp4";
         hCNetSDK.NET_DVR_SaveRealData(lRealHandle, file);
         return file;
     }
