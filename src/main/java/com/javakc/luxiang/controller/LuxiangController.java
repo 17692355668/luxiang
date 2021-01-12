@@ -22,15 +22,13 @@ public class LuxiangController {
 
     @Autowired
     LuxiangServiceImpl luxiangService;
-    Test1 test=new Test1();
     Map<String,Test1> vedioMap = new HashMap<>();
+
     //保存
-    @RequestMapping("insert/{ip}/{filename}/{file}")
     public void insert(@PathVariable String ip,@PathVariable String filename,@PathVariable String file)
     {
         int x=luxiangService.insert(ip,filename,file);
     }
-
     //初始化
     //参数：ip
     @RequestMapping("chushihua/{ip}")
@@ -39,6 +37,7 @@ public class LuxiangController {
         Test1 test1 = vedioMap.get(ip);
         if(test1==null){
             test1=new Test1();
+            vedioMap.put(ip,test1);
         }
         test1.chushihua();
         test1.zhece(ip);
