@@ -3,10 +3,15 @@
 <mapper namespace="com.javakc.luxiang.mapper.LuxiangMapper">
 
 
-    <insert id="insert" parameterType="int">
+
+    <insert id="insert" parameterType="String">
 insert into luxiang(id,ip,filename,file)
-        values(#{id},null,null,null)
+        values(null,#{ip},#{filename},#{file})
     </insert>
+
+    <select id="selAll" resultType="com.javakc.luxiang.entity.Luxiang">
+        select * from luxiang where  file=#{file}
+    </select>
 
 
 </mapper>

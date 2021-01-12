@@ -1,6 +1,10 @@
 package com.javakc.luxiang.mapper;
 
+import com.javakc.luxiang.entity.Luxiang;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * @program:luxiang
@@ -10,6 +14,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface LuxiangMapper {
-    int insert(int id);
+    int insert(String ip,String filename,String file);
+
+
+    Luxiang selAll(String file);
 
 }
