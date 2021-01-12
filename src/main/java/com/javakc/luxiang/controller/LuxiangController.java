@@ -5,10 +5,10 @@ import com.javakc.luxiang.service.impl.LuxiangServiceImpl;
 import com.javakc.test.Test1.Test1;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -16,14 +16,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @description:
  * @create:2021-01-11
  */
-@Controller
+@RestController
 public class LuxiangController {
 
 
     @Autowired
     LuxiangServiceImpl luxiangService;
     Test1 test=new Test1();
-
+    Map<String,Test1> vedioMap = new HashMap<>();
     //保存
     @RequestMapping("insert/{ip}/{filename}/{file}")
     public void insert(@PathVariable String ip,@PathVariable String filename,@PathVariable String file)
@@ -36,44 +36,46 @@ public class LuxiangController {
     @RequestMapping("chushihua/{ip}")
     public void chushihua(@PathVariable String ip)
     {
-        test.chushihua();
-        test.zhece(ip);
+        Test1 test1 = vedioMap.get(ip);
+        if(test1==null){
+            test1=new Test1();
+        }
+        test1.chushihua();
+        test1.zhece(ip);
     }
 
     //开始录像
     //返回绝对路径
-    @RequestMapping("kaishi")
-    public String kaishi()
+    @RequestMapping("kaishi/{ip}")
+    public String kaishi(@PathVariable String ip)
     {
-        String file=test.kaishi();
+        Test1 test1 = vedioMap.get(ip);
+        String file=test1.kaishi();
         return file;
     }
 
     //结束录像
-    @RequestMapping("jieshu")
-    public void jieshu()
+    @RequestMapping("jieshu/{ip}")
+    public void jieshu(@PathVariable String ip)
     {
-        test.jieshu();
+        Test1 test1 = vedioMap.get(ip);
+        test1.jieshu();
         //信息储存
-        insert(test.getM_sDeviceIP(),test.getFile(),test.getFile());
+        insert(test1.getM_sDeviceIP(),test1.getFile(),test1.getFile());
     }
 
     //注销
-    @RequestMapping("zhuxiao")
-    public void zhuxiao()
+    @RequestMapping("zhuxiao/{ip}")
+    public void zhuxiao(@PathVariable String ip)
     {
-        test.zhuxiao();
+        Test1 test1 = vedioMap.get(ip);
+        test1.zhuxiao();
     }
 
 
-    //根据文件名进行查询
-    @ResponseBody
-    @RequestMapping("select")
-    public Luxiang sel(String file){
-        Luxiang list=luxiangService.selAllService( file);
-        return list;
 
-    }
+
+
 
 
 

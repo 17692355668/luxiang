@@ -7,29 +7,37 @@ import org.springframework.stereotype.Component;
 import java.util.Scanner;
 
 public class Test1 {
-    private static HCNetSDK hCNetSDK = HCNetSDK.INSTANCE;
-    private static int lUserID = -1;//用户句柄
-    private static int lRealHandle = 0;
-    private static int iCharEncodeType = 0;//设备字符集
-    private static String m_sDeviceIP = "";//设备ip地址
-     static String m_sUsername = "admin";//设备用户名
-    private static String m_sPassword = "";//设备密码
-     static String file="";
+    private  HCNetSDK hCNetSDK = HCNetSDK.INSTANCE;
+    private  int lUserID = -1;//用户句柄
+    private  int lRealHandle = 0;
+    private  int iCharEncodeType = 0;//设备字符集
+    private  String m_sDeviceIP = "";//设备ip地址
+    private  String m_sUsername = "admin";//设备用户名
+    private  String m_sPassword = "";//设备密码
+    private  String file="";
 
-    public static String getM_sDeviceIP() {
+    public int getlUserID() {
+        return lUserID;
+    }
+
+    public void setlUserID(int lUserID) {
+        this.lUserID = lUserID;
+    }
+
+    public String getM_sDeviceIP() {
         return m_sDeviceIP;
     }
 
-    public static void setM_sDeviceIP(String m_sDeviceIP) {
-        Test1.m_sDeviceIP = m_sDeviceIP;
+    public void setM_sDeviceIP(String m_sDeviceIP) {
+        this.m_sDeviceIP = m_sDeviceIP;
     }
 
-    public static String getFile() {
+    public String getFile() {
         return file;
     }
 
-    public static void setFile(String file) {
-        Test1.file = file;
+    public void setFile(String file) {
+        this.file = file;
     }
 
     public void chushihua()
@@ -81,7 +89,7 @@ public class Test1 {
         lRealHandle = hCNetSDK.NET_DVR_RealPlay(lUserID, lpClintInfo);
         //捕获数据并存放到指定的文件中
         //用当前时间戳来命名视频名字
-        long time = System.currentTimeMillis();
+        String time =java.util.UUID.randomUUID().toString();
         file = "E:\\qq\\" + time + ".mp4";
         hCNetSDK.NET_DVR_SaveRealData(lRealHandle, file);
         return file;

@@ -76,6 +76,19 @@
             <artifactId>tomcat-embed-jasper</artifactId>
         </dependency>
         <!-- jsp整合结束-->
+        <dependency>
+            <groupId>jna</groupId>
+            <artifactId>jna</artifactId>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/jna.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>jna1</groupId>
+            <artifactId>jna1</artifactId>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/examples.jar</systemPath>
+        </dependency>
+
 
 
 
