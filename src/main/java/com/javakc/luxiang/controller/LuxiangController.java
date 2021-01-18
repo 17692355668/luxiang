@@ -1,8 +1,8 @@
 package com.javakc.luxiang.controller;
 
+import com.javakc.Test1.Test1;
 import com.javakc.luxiang.entity.Luxiang;
 import com.javakc.luxiang.service.impl.LuxiangServiceImpl;
-import com.javakc.test.Test1.Test1;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +22,7 @@ public class LuxiangController {
 
     @Autowired
     LuxiangServiceImpl luxiangService;
-    Map<String,Test1> vedioMap = new HashMap<>();
+    Map<String, Test1> vedioMap = new HashMap<>();
 
     //保存
     public void insert(@PathVariable String ip,@PathVariable String filename,@PathVariable String file)
@@ -61,7 +61,7 @@ public class LuxiangController {
         Test1 test1 = vedioMap.get(ip);
         test1.jieshu();
         //信息储存
-        insert(test1.getM_sDeviceIP(),test1.getFile(),test1.getFile());
+
     }
 
     //注销

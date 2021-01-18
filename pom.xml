@@ -77,11 +77,9 @@
         </dependency>
         <!-- jsp整合结束-->
         <dependency>
-            <groupId>jna</groupId>
+            <groupId>net.java.dev.jna</groupId>
             <artifactId>jna</artifactId>
-            <version>3.0.9</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/jna.jar</systemPath>
+            <version>5.6.0</version>
         </dependency>
         <dependency>
             <groupId>jna1</groupId>
