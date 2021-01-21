@@ -1,13 +1,7 @@
-package com.javakc.test.Test1;
-
-import com.javakc.luxiang.controller.LuxiangController;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+package com.javakc.Test1;
 
 import java.io.File;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.Scanner;
 
 public class Test1 {
     private  HCNetSDK hCNetSDK = HCNetSDK.INSTANCE;
@@ -18,6 +12,15 @@ public class Test1 {
     private  String m_sUsername = "admin";//设备用户名
     private  String m_sPassword = "";//设备密码
     private  String file="";
+    private String filename="";
+
+    public String getFilename() {
+        return filename;
+    }
+
+    public void setFilename(String filename) {
+        this.filename = filename;
+    }
 
     public int getlUserID() {
         return lUserID;
@@ -92,20 +95,15 @@ public class Test1 {
         lRealHandle = hCNetSDK.NET_DVR_RealPlay(lUserID, lpClintInfo);
         //捕获数据并存放到指定的文件中
         //用当前时间戳来命名视频名字
-        Date dt=new Date();
 
-        String year=String.format("%tY", dt);
-
-        String mon=String .format("%tm", dt);
-
-        String day=String .format("%td", dt);
-        String file1="E:\\"+year+"\\"+mon+"\\"+day;
+        String file1="E:\\";
         File file2 = new File(file1);
         if (!file2.exists()) {
             file2.mkdirs();
         }
         String time =java.util.UUID.randomUUID().toString();
-        file = file1+"\\" + time + ".mp4";
+        filename=time;
+        file = file1+time + ".mp4";
         hCNetSDK.NET_DVR_SaveRealData(lRealHandle, file);
         return file;
     }

@@ -3,7 +3,7 @@
  *
  */
 
-package com.javakc.test.Test1;
+package com.javakc.Test1;
 
 import com.sun.jna.Native;
 import com.sun.jna.Pointer;
