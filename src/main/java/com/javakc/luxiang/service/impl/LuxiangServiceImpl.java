@@ -43,7 +43,7 @@ public class LuxiangServiceImpl implements LuxiangService {
                 BufferedReader in = null;
                  String result = "";
                  try {
-                        URL realUrl = new URL("http://192.168.1.35:8082/upload");
+                        URL realUrl = new URL("http://192.9.100.254:9999/upload");
                         //打开和URL之间的连接
                         HttpURLConnection conn = (HttpURLConnection)realUrl.openConnection();
                         //发送POST请求必须设置如下两行
@@ -116,12 +116,17 @@ public class LuxiangServiceImpl implements LuxiangService {
                                  if (in != null) {
                                         in.close();
                                      }
+                                 File file=new File(path);
+                                 file.delete();
                              } catch (Exception ex) {
                                  // TODO: handle exception
                                  ex.printStackTrace();
                              }
+
                      }
-                 return result;
+
+
+         return result;
              }
 
      }

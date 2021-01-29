@@ -1,7 +1,15 @@
 package com.javakc.Test1;
 
+import com.sun.jna.Native;
+import com.sun.jna.NativeLong;
+import com.sun.jna.Pointer;
+import com.sun.jna.ptr.IntByReference;
+
+import javax.swing.*;
 import java.io.File;
 import java.util.Date;
+
+import static com.javakc.Test1.HCNetSDK.NET_DVR_SET_COMPRESSCFG_V30;
 
 public class Test1 {
     private  HCNetSDK hCNetSDK = HCNetSDK.INSTANCE;
@@ -13,6 +21,18 @@ public class Test1 {
     private  String m_sPassword = "";//设备密码
     private  String file="";
     private String filename="";
+
+    private HCNetSDK.NET_DVR_PICCFG_V30 m_struPicCfg;//图片参数
+    private HCNetSDK.NET_DVR_COMPRESSIONCFG_V30 m_struCompressionCfg;//压缩参数
+    private HCNetSDK.NET_DVR_RECORD_V30 m_struRemoteRecCfg;//录像参数
+    private HCNetSDK.NET_DVR_DEVICEINFO_V30 m_strDeviceInfo;//设备信息
+    private HCNetSDK.NET_DVR_SHOWSTRING_V30 m_strShowString;//叠加字符参数
+
+
+
+
+
+
 
     public String getFilename() {
         return filename;
@@ -49,12 +69,14 @@ public class Test1 {
     public void chushihua()
     {
         hCNetSDK.NET_DVR_Init();
+
     }
 
 
     public void zhuxiao() {
         hCNetSDK.NET_DVR_Logout(lUserID);
         hCNetSDK.NET_DVR_Cleanup();
+
     }
 
     public void zhece(String ip) {
@@ -84,6 +106,7 @@ public class Test1 {
             System.out.println("登录成功！");
             iCharEncodeType = m_strDeviceInfo.byCharEncodeType;
         }
+
     }
 
     public String kaishi() {
@@ -94,24 +117,21 @@ public class Test1 {
         lpClintInfo.hPlayWnd = null;
         lRealHandle = hCNetSDK.NET_DVR_RealPlay(lUserID, lpClintInfo);
         //捕获数据并存放到指定的文件中
-        //用当前时间戳来命名视频名字
-
         String file1="E:\\";
         File file2 = new File(file1);
         if (!file2.exists()) {
             file2.mkdirs();
         }
         String time =java.util.UUID.randomUUID().toString();
-        filename=time;
+        filename=time+".mp4";
         file = file1+time + ".mp4";
         hCNetSDK.NET_DVR_SaveRealData(lRealHandle, file);
-        return file;
+        return filename;
     }
 
     public void jieshu() {
         //结束录像
         hCNetSDK.NET_DVR_StopSaveRealData(lRealHandle);
-        System.out.println("录像结束");
         hCNetSDK.NET_DVR_StopRealPlay(lRealHandle);
     }
 

@@ -50,7 +50,7 @@ public class LuxiangController {
         Test1 test2 = vedioMap.get(ip);
         test2.kaishi();
 
-        System.out.println(test2.getFile()+ip);
+        System.out.println(ip);
         return test2.getFilename();
     }
 
